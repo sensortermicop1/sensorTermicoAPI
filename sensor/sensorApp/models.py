@@ -13,9 +13,9 @@ SYSTEM_CHOICES = (
 
 class SensorInformation(models.Model):
 
-    maxTemperature = models.DecimalField(max_digits=None, 
+    maxTemperature = models.DecimalField(max_digits=3, 
                                          decimal_places=2)
-    minTemperature = models.DecimalField(max_digits=None, 
+    minTemperature = models.DecimalField(max_digits=3, 
                                          decimal_places=2)
     sensorId = models.IntegerField(blank=False,
                                    primary_key=True,
@@ -40,7 +40,7 @@ class SensorInformation(models.Model):
 
 class Measurement(models.Model):
 
-    temperature = models.DecimalField(max_digits=None,
+    temperature = models.DecimalField(max_digits=3,
                                       decimal_places=2)
     finalTime = models.DateTimeField(auto_now=False, 
                                      auto_now_add=False)       
