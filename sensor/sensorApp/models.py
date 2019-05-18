@@ -22,6 +22,22 @@ class SensorInformation(models.Model):
                                    unique=True,
                                    default=1)
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('sensorId', (),
+                {
+                   'id': self.sensorId,
+                })
+
+    def save(self, *args, **kwargs):
+        super(Post, self).save(*args, **kwargs)
+
+    class Meta:
+        ordering = ['created_on']
+        def __unicode__(self):
+            return self.title
+
+
 
 class Measurement(models.Model):
 
@@ -38,7 +54,7 @@ class Measurement(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('blog_post_detail', (),
+        return ('measurementId', (),
                 {
                    'id': self.measurementId,
                 })
@@ -60,7 +76,25 @@ class System(models.Model):
                                    default=1)   
     systemType = models.CharField(max_length=1,
                                   choices=SYSTEM_CHOICES,
-                                  blank=True)            
+                                  blank=True) 
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('systemId', (),
+                {
+                   'id': self.systemId,
+                })
+
+    def save(self, *args, **kwargs):
+        super(Post, self).save(*args, **kwargs)
+
+    class Meta:
+        ordering = ['created_on']
+        def __unicode__(self):
+            return self.title
+
+                                  
+                                            
 
 class Product(models.Model):
     productName = models.CharField(max_length=100)
@@ -69,4 +103,20 @@ class Product(models.Model):
                                     primary_key=True,
                                     unique=True,
                                     default=1)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('productId', (),
+                {
+                   'id': self.productId,
+                })
+
+    def save(self, *args, **kwargs):
+        super(Post, self).save(*args, **kwargs)
+
+    class Meta:
+        ordering = ['created_on']
+        def __unicode__(self):
+            return self.title
+
 
