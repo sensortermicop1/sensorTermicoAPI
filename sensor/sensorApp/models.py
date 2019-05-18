@@ -22,7 +22,6 @@ class SensorInformation(models.Model):
                                    unique=True,
                                    default=1)
 
-    @models.permalink
     def get_absolute_url(self):
         return ('sensorId', (),
                 {
@@ -33,7 +32,7 @@ class SensorInformation(models.Model):
         super(Post, self).save(*args, **kwargs)
 
     class Meta:
-        ordering = ['created_on']
+        ordering = ['sensorId']
         def __unicode__(self):
             return self.title
 
@@ -52,7 +51,6 @@ class Measurement(models.Model):
                                         unique=True,
                                         default=1)
 
-    @models.permalink
     def get_absolute_url(self):
         return ('measurementId', (),
                 {
@@ -63,7 +61,7 @@ class Measurement(models.Model):
         super(Post, self).save(*args, **kwargs)
 
     class Meta:
-        ordering = ['created_on']
+        ordering = ['finalTime']
         def __unicode__(self):
             return self.title
 
@@ -78,7 +76,6 @@ class System(models.Model):
                                   choices=SYSTEM_CHOICES,
                                   blank=True) 
 
-    @models.permalink
     def get_absolute_url(self):
         return ('systemId', (),
                 {
@@ -89,7 +86,7 @@ class System(models.Model):
         super(Post, self).save(*args, **kwargs)
 
     class Meta:
-        ordering = ['created_on']
+        ordering = ['systemId']
         def __unicode__(self):
             return self.title
 
@@ -104,7 +101,6 @@ class Product(models.Model):
                                     unique=True,
                                     default=1)
 
-    @models.permalink
     def get_absolute_url(self):
         return ('productId', (),
                 {
@@ -115,7 +111,7 @@ class Product(models.Model):
         super(Post, self).save(*args, **kwargs)
 
     class Meta:
-        ordering = ['created_on']
+        ordering = ['productId']
         def __unicode__(self):
             return self.title
 
