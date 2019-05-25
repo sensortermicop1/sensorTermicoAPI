@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_tables2',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -76,10 +78,12 @@ WSGI_APPLICATION = 'sensor.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': '/etc/mysql/my.cnf',
-        },
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'YCM9vogcuf',
+        'USER': 'YCM9vogcuf',
+        'PASSWORD': 'y98jhJH9i3',
+        'HOST': 'remotemysql.com',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
     }
 }
 
