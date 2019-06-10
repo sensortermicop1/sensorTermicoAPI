@@ -1,4 +1,4 @@
 # Don't track content of these folders
-sensorApp/__pycache__
-sensorApp/migrations
-sensor/__pycache__
+pumba/
+sensorTermico/sensor/migrations/
+sensorTermico/sensorTermico/__pycache__/
