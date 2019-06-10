@@ -2,3 +2,4 @@
 pumba/
 sensorTermico/sensor/migrations/
 sensorTermico/sensorTermico/__pycache__/
+sensorTermico/sensor/__pycache__/
