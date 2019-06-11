@@ -79,7 +79,11 @@ WSGI_APPLICATION = 'sensorTermico.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.path.join(BASE_DIR, 'db.mysql'),
+        'NAME' : 'sensor',
+        'USER': 'root',
+        'PASSWORD': 'sensor1337',
+        'HOST': 'localhost',                 # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '3306',    
     }
 }
 
