@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.request import HttpResponse
+from django.http import HttpResponse
 from .views import Measurement
 
 # Create your views here.
