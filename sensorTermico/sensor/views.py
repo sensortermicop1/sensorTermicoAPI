@@ -6,7 +6,7 @@ from .models import Measurement
 
 def index(request):
     latest_measurement_list =  Measurement.objects.order_by('-finalTime')[:5]
-    output = ', '.join([m.temperature for m in latest_measurement_list])
+    output = ', '.join([str(m.temperature) for m in latest_measurement_list])
     return HttpResponse(output)
 
 def detail(request, measurement_id):
