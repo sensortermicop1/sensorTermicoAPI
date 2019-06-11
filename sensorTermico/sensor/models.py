@@ -13,34 +13,19 @@ SYSTEM_CHOICES = (
 
 class SensorInformation(models.Model):
 
-    maxTemperature = models.DecimalField(max_digits=3, 
+    maxTemperature = models.DecimalField(max_digits=5, 
                                          decimal_places=2)
-    minTemperature = models.DecimalField(max_digits=3, 
+    minTemperature = models.DecimalField(max_digits=5, 
                                          decimal_places=2)
     sensorId = models.IntegerField(blank=False,
                                    primary_key=True,
                                    unique=True,
                                    default=1)
 
-    def get_absolute_url(self):
-        return ('sensorId', (),
-                {
-                   'id': self.sensorId,
-                })
-
-    def save(self, *args, **kwargs):
-        super(Post, self).save(*args, **kwargs)
-
-    class Meta:
-        ordering = ['sensorId']
-        def __unicode__(self):
-            return self.title
-
-
 
 class Measurement(models.Model):
 
-    temperature = models.DecimalField(max_digits=3,
+    temperature = models.DecimalField(max_digits=5,
                                       decimal_places=2)
     finalTime = models.DateTimeField(auto_now=False, 
                                      auto_now_add=False)       
@@ -51,19 +36,6 @@ class Measurement(models.Model):
                                         unique=True,
                                         default=1)
 
-    def get_absolute_url(self):
-        return ('measurementId', (),
-                {
-                   'id': self.measurementId,
-                })
-
-    def save(self, *args, **kwargs):
-        super(Post, self).save(*args, **kwargs)
-
-    class Meta:
-        ordering = ['finalTime']
-        def __unicode__(self):
-            return self.title
 
 
 
@@ -76,19 +48,6 @@ class System(models.Model):
                                   choices=SYSTEM_CHOICES,
                                   blank=True) 
 
-    def get_absolute_url(self):
-        return ('systemId', (),
-                {
-                   'id': self.systemId,
-                })
-
-    def save(self, *args, **kwargs):
-        super(Post, self).save(*args, **kwargs)
-
-    class Meta:
-        ordering = ['systemId']
-        def __unicode__(self):
-            return self.title
 
                                   
                                             
@@ -100,19 +59,3 @@ class Product(models.Model):
                                     primary_key=True,
                                     unique=True,
                                     default=1)
-
-    def get_absolute_url(self):
-        return ('productId', (),
-                {
-                   'id': self.productId,
-                })
-
-    def save(self, *args, **kwargs):
-        super(Post, self).save(*args, **kwargs)
-
-    class Meta:
-        ordering = ['productId']
-        def __unicode__(self):
-            return self.title
-
-
