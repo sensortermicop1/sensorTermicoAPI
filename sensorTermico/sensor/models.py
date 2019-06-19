@@ -11,34 +11,6 @@ SYSTEM_CHOICES = (
     ('Q', 'Quente')
 )
 
-class SensorInformation(models.Model):
-
-    maxTemperature = models.DecimalField(max_digits=5, 
-                                         decimal_places=2)
-    minTemperature = models.DecimalField(max_digits=5, 
-                                         decimal_places=2)
-    sensorId = models.IntegerField(blank=False,
-                                   primary_key=True,
-                                   unique=True,
-                                   default=1)
-
-
-class Measurement(models.Model):
-
-    temperature = models.DecimalField(max_digits=5,
-                                      decimal_places=2)
-    finalTime = models.DateTimeField(auto_now=False, 
-                                     auto_now_add=False)       
-    initialTime = models.DateTimeField(auto_now=False, 
-                                       auto_now_add=False)
-    measurementId = models.IntegerField(blank=False,
-                                        primary_key=True,
-                                        unique=True,
-                                        default=1)
-
-
-
-
 class System(models.Model):
     systemId = models.IntegerField(blank=False,
                                    primary_key=True,
@@ -49,6 +21,30 @@ class System(models.Model):
                                   blank=True) 
 
 
+
+class SensorInformation(models.Model):
+
+    maxTemperature = models.DecimalField(max_digits=5, 
+                                         decimal_places=2)
+    minTemperature = models.DecimalField(max_digits=5, 
+                                         decimal_places=2)
+    sensorId = models.IntegerField(blank=False,
+                                   primary_key=True,
+                                   unique=True,
+                                   default=1)
+    localization = models.ForeignKey(System, on_delete=models.CASCADE)
+
+
+class Measurement(models.Model):
+    sensor = models.ForeignKey(SensorInformation, on_delete=models.CASCADE)
+    temperature = models.DecimalField(max_digits=5,
+                                      decimal_places=2)
+    time = models.DateTimeField(auto_now=False, 
+                                     auto_now_add=False)       
+    measurementId = models.IntegerField(blank=False,
+                                        primary_key=True,
+                                        unique=True,
+                                        default=1)
                                   
                                             
 
