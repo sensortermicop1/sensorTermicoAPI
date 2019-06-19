@@ -1,1 +1,6 @@
-<li><a href="{% url 'sensor:detail' measurement.measurementId %}">{{ measurement.temperature }}</a></li>
+{% for measurement in latest_meausrement_list %}
+<li>
+    <p> Medição: </p>
+    <a href="/{{ measurement.measurementId }}">{{ measurement.temperature }}</a></p>
+</li>
+{% endfor %}
