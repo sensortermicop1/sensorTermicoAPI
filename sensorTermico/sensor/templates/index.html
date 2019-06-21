@@ -1,6 +1,7 @@
-{% for measurement in latest_meausrement_list %}
-<li>
-    <p> Medição: </p>
-    <a href="/{{ measurement.measurementId }}">{{ measurement.temperature }}</a></p>
-</li>
+<a href="measurement/">Checar temperatura atual</a>
+<h2> Ultimas medições: </h2>
+{% for measurement in latest_measurement_list %}
+<h1><a href="{{ measurement.measurementId }}">Mensuração: {{ measurement.measurementId }} </a></h1>
+<p><a href="detail/{{ measurement.sensor.sensorId}}">Sensor: {{ measurement.sensor.sensorId }}</a></p>
+<p> Temperatura {{ measurement.temperature}}
 {% endfor %}
