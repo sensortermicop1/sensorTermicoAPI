@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Measurement, SensorInformation
 from bs4 import BeautifulSoup
 import requests
+import datetime
 
 # Create your views here.
 
@@ -21,5 +22,8 @@ def sensor_detail(request, sensor_id):
 def get_data(request):
     page = requests.get('http://192.168.0.13/')
     soup = BeautifulSoup(page.text , 'html.parser')
-    temperature = soup.get_text()
-    return render(request, 'sensor/measurement.html', {'temperature' : temperature })
+    temp = soup.get_text()
+    time = datetime.datetime.now()
+    sensor = get_object_or_404(SensorInformation, pk = 1)
+    measurement = Measurement.objects.create_measurement(sensor, float(temp), time)
+    return render(request, 'sensor/measurement.html', {'temperature' : temp })

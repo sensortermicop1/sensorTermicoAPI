@@ -12,10 +12,8 @@ SYSTEM_CHOICES = (
 )
 
 class System(models.Model):
-    systemId = models.IntegerField(blank=False,
-                                   primary_key=True,
-                                   unique=True,
-                                   default=1)   
+
+    systemId = models.AutoField(primary_key=True)
     systemType = models.CharField(max_length=1,
                                   choices=SYSTEM_CHOICES,
                                   blank=True) 
@@ -28,11 +26,15 @@ class SensorInformation(models.Model):
                                          decimal_places=2)
     minTemperature = models.DecimalField(max_digits=5, 
                                          decimal_places=2)
-    sensorId = models.IntegerField(blank=False,
-                                   primary_key=True,
-                                   unique=True,
-                                   default=1)
+    sensorId = models.AutoField(primary_key=True)
     localization = models.ForeignKey(System, on_delete=models.CASCADE)
+
+
+class MeasurementManager(models.Manager):
+    def create_measurement(self, sensor, temperature, time):
+        measurement = self.create(sensor=sensor, temperature=temperature,
+                                  time=time)
+        return measurement
 
 
 class Measurement(models.Model):
@@ -41,17 +43,13 @@ class Measurement(models.Model):
                                       decimal_places=2)
     time = models.DateTimeField(auto_now=False, 
                                      auto_now_add=False)       
-    measurementId = models.IntegerField(blank=False,
-                                        primary_key=True,
-                                        unique=True,
-                                        default=1)
+    measurementId = models.AutoField(primary_key=True)
+
+    objects = MeasurementManager()
                                   
                                             
 
 class Product(models.Model):
     productName = models.CharField(max_length=100)
     productQuantity = models.IntegerField(blank=False)
-    productId = models.IntegerField(blank=False,
-                                    primary_key=True,
-                                    unique=True,
-                                    default=1)
+    productId = models.AutoField(primary_key=True)
