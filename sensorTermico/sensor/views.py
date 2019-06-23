@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Measurement, SensorInformation
+from django_cron import CronJobBase, Schedule
 from bs4 import BeautifulSoup
 import requests
 import datetime
-
 # Create your views here.
+
+
 
 def index(request):
     latest_measurement_list =  Measurement.objects.order_by('-time')[:5]
