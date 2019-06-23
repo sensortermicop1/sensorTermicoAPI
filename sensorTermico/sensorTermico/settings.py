@@ -42,6 +42,11 @@ INSTALLED_APPS = [
     'MySQLdb',
     'bs4',
     'requests',
+    'django_cron',
+]
+
+CRON_CLASSES = [
+    "sensor.cron.GetTemperatureCron",
 ]
 
 MIDDLEWARE = [
